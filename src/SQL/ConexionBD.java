@@ -16,12 +16,12 @@ public class ConexionBD {
         
         Connection conexion = null;
         
-        try {
+        try { 
             Class.forName("com.mysql.jdbc.Driver");
             conexion = (Connection) DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Conexión Establecida Éxitosamente");
         } catch (Exception e) {
-            System.out.println("Conexión Fallida" + e);
+            System.out.println("Conexión Fallida y el error es: " + e);
         }
         return conexion;
     }

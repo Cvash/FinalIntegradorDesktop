@@ -13,12 +13,13 @@ public class SQLmetodos {
     String sql;
     
     
-    public void buscarUsuarioRegistrado( String USER, String PASSWORD ) {
+    public void buscarUsuarioRegistrado( String DNI, String PASSWORD ) {
         
         try {
             conexion = ConexionBD.conectar();
-            sql = " SELECT USER, PASSWORD FROM biblioteca_integrador WHERE USER = '"+USER+"' && PASSWORD = '"+PASSWORD+"' ";
+            sql = " SELECT DNI, PASSWORD FROM biblioteca_integrador WHERE DNI = '"+DNI+"' && PASSWORD = '"+PASSWORD+"' ";
         } catch (Exception e) {
+            System.out.println("Error: " + e);
         }
         
         
