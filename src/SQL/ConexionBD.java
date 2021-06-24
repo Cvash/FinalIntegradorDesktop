@@ -1,18 +1,20 @@
 
 package SQL;
 
-import com.mysql.jdbc.Connection;
+
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class ConexionBD {
-    
+  /*  
     
     public static String URL = "jdbc:mysql://localhost/biblioteca_integrador";
     public static String USER = "root";
     public static String PASSWORD = "toor";
     
     
-    public static Connection conectar() {
+    public static Connection conectar(){
         
         Connection conexion = null;
         
@@ -33,5 +35,5 @@ public class ConexionBD {
             System.out.println("La variable de conexion ha sido puesta en null");
         }
     }
-    
+    */
 }
