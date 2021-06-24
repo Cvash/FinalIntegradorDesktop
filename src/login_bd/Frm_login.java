@@ -30,8 +30,17 @@ public class Frm_login extends javax.swing.JFrame {
     private void initComponents() {
 
         background = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        logo_icon = new javax.swing.JLabel();
+        txtNombreBiblioteca = new javax.swing.JLabel();
+        user_login = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtUser = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
+        btnIngresar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -39,22 +48,68 @@ public class Frm_login extends javax.swing.JFrame {
         background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/user_login.png"))); // NOI18N
-        background.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, 440, 260));
+        logo_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logo_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo_biblioteca.png"))); // NOI18N
+        background.add(logo_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, 440, 200));
+
+        txtNombreBiblioteca.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombreBiblioteca.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
+        txtNombreBiblioteca.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombreBiblioteca.setText("Nombre de la Biblioteca");
+        background.add(txtNombreBiblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 420, 340, 90));
+
+        user_login.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        user_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/user_login.png"))); // NOI18N
+        user_login.setMaximumSize(new java.awt.Dimension(256, 2560));
+        background.add(user_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 260));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
-        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 440, 650));
+        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, 440, 660));
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Iniciar Sesion");
+        background.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Usuario:");
+        background.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Contraseña:");
+        background.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, -1, -1));
+
+        txtUser.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        background.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 260, 40));
+
+        txtPassword.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        background.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 432, 260, 40));
+
+        btnIngresar.setBackground(new java.awt.Color(51, 101, 166));
+        btnIngresar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnIngresar.setText("Ingresar");
+        btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        background.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 130, 50));
+
+        jButton1.setBackground(new java.awt.Color(51, 101, 166));
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton1.setText("Crear Nuevo Usuario");
+        jButton1.setActionCommand("Crear Nuevo Usuario");
+        background.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 540, 230, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 1172, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
         );
 
         pack();
@@ -97,7 +152,16 @@ public class Frm_login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
+    private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel logo_icon;
+    private javax.swing.JLabel txtNombreBiblioteca;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUser;
+    private javax.swing.JLabel user_login;
     // End of variables declaration//GEN-END:variables
 }
