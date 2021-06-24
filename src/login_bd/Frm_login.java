@@ -99,6 +99,7 @@ public class Frm_login extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton1.setText("Crear Nuevo Usuario");
         jButton1.setActionCommand("Crear Nuevo Usuario");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         background.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 540, 230, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
