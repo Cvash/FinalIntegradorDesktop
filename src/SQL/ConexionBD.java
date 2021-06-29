@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionBD {
-  /*  
+   
     
     public static String URL = "jdbc:mysql://localhost/biblioteca_integrador";
     public static String USER = "root";
@@ -20,7 +20,7 @@ public class ConexionBD {
         
         try { 
             Class.forName("com.mysql.jdbc.Driver");
-            conexion = (Connection) DriverManager.getConnection(URL, USER, PASSWORD);
+            conexion = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Conexión Establecida Éxitosamente");
         } catch (Exception e) {
             System.out.println("Conexión Fallida y el error es: " + e);
@@ -35,5 +35,5 @@ public class ConexionBD {
             System.out.println("La variable de conexion ha sido puesta en null");
         }
     }
-    */
+    
 }

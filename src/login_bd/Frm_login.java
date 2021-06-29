@@ -40,12 +40,13 @@ public class Frm_login extends javax.swing.JFrame {
         txtUser = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnNuevoUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Iniciar Sesión");
         setResizable(false);
 
-        background.setBackground(new java.awt.Color(255, 255, 255));
+        background.setBackground(new java.awt.Color(204, 204, 204));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logo_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -95,12 +96,11 @@ public class Frm_login extends javax.swing.JFrame {
         btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         background.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 130, 50));
 
-        jButton1.setBackground(new java.awt.Color(51, 101, 166));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setText("Crear Nuevo Usuario");
-        jButton1.setActionCommand("Crear Nuevo Usuario");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        background.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 540, 230, 50));
+        btnNuevoUsuario.setBackground(new java.awt.Color(51, 101, 166));
+        btnNuevoUsuario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnNuevoUsuario.setText("Crear Nuevo Usuario");
+        btnNuevoUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        background.add(btnNuevoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 540, 230, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,7 +154,7 @@ public class Frm_login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnNuevoUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
