@@ -92,12 +92,14 @@ public class Frm_login extends javax.swing.JFrame {
 
         btnIngresar.setBackground(new java.awt.Color(51, 101, 166));
         btnIngresar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         btnIngresar.setText("Ingresar");
         btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         background.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 130, 50));
 
         btnNuevoUsuario.setBackground(new java.awt.Color(51, 101, 166));
         btnNuevoUsuario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnNuevoUsuario.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevoUsuario.setText("Crear Nuevo Usuario");
         btnNuevoUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         background.add(btnNuevoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 540, 230, 50));
