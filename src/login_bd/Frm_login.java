@@ -7,8 +7,6 @@ package login_bd;
 
 import SQL.SQLmetodos;
 
-
-
 /**
  *
  * @author user
@@ -23,6 +21,8 @@ public class Frm_login extends javax.swing.JFrame {
     }
     // instanciamos el metodo
     SQLmetodos SQLmetodos = new SQLmetodos();
+    
+    Frm_reserva_citas reservaCita = new Frm_reserva_citas();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -131,6 +131,10 @@ public class Frm_login extends javax.swing.JFrame {
         // lleva los datos al metodo SQL
         SQLmetodos.buscarUsuarioRegistrado(txtUser.getText(), txtPassword.getText());
         
+        if ( reservaCita.isEnabled() ) {
+            this.dispose();
+        }
+
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**

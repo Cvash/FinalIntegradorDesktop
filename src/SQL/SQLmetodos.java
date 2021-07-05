@@ -43,6 +43,9 @@ public class SQLmetodos {
                 JOptionPane.showMessageDialog(null, "Error en el usuario o contraseña Ingresada!");
             }
             
+            conexion.close();
+            ConexionBD.desconectar();
+            
         } catch ( SQLException e) {
             System.out.println("Error: " +e);
         }
