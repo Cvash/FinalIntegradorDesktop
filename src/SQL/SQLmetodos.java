@@ -51,4 +51,33 @@ public class SQLmetodos {
         }
         
     }
+    
+    
+    
+    //metodo para guardar datos usuario
+    public int guardar(String usuarioRegistrado, String contrasenia, String nombre, String apellido, String email, String telefono, String direccion) {
+        int resultado = 0; //tenemos que retornar datos
+        Connection conexion = null;
+
+        String sentencia_guardar = ("INSERT INTO usuario(usuarioRegistrado,contrasenia,nombre,apellido,email,telefono,direccion) VALUES (?,?,?,?,?,?,?)");//sentencia para guardar en la base de datos
+        try {
+            conexion = ConexionBD.conectar();
+            sentencia_preparada = conexion.prepareStatement(sentencia_guardar);
+            sentencia_preparada.setString(1, usuarioRegistrado);
+            sentencia_preparada.setString(2, contrasenia);
+            sentencia_preparada.setString(3, nombre);
+            sentencia_preparada.setString(4, apellido);
+            sentencia_preparada.setString(5, email);
+            sentencia_preparada.setString(6, telefono);
+            sentencia_preparada.setString(7, direccion);
+
+            resultado = sentencia_preparada.executeUpdate();
+            sentencia_preparada.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return resultado;
+    }
+    
+    
 }

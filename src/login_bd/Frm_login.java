@@ -111,6 +111,11 @@ public class Frm_login extends javax.swing.JFrame {
         btnNuevoUsuario.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevoUsuario.setText("Crear Nuevo Usuario");
         btnNuevoUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoUsuarioActionPerformed(evt);
+            }
+        });
         background.add(btnNuevoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 540, 230, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,6 +141,17 @@ public class Frm_login extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoUsuarioActionPerformed
+        // TODO add your handling code here:
+        Frm_new_user newUser = new Frm_new_user();
+        newUser.setVisible(true);
+        
+        //ocultamos la ventana de login
+        this.setVisible(false);
+        
+        
+    }//GEN-LAST:event_btnNuevoUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
