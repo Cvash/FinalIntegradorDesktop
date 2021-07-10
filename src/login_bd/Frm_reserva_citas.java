@@ -2,11 +2,14 @@
 package login_bd;
 
 import SQL.ConexionBD;
+import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 import metodos.dao.CategoriaDao;
 
 /**
@@ -52,9 +55,9 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         btnBusscar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jtReservar = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtDisponibilidad = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -102,6 +105,11 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         jLabel10.setText("Libro");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, -1, -1));
 
+        cbxCategoria.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxCategoriaItemStateChanged(evt);
+            }
+        });
         cbxCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxCategoriaActionPerformed(evt);
@@ -122,7 +130,7 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         btnBusscar.setText("Buscar");
         jPanel2.add(btnBusscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 320, -1, -1));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jtReservar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -133,11 +141,11 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jtReservar);
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 650, 790, 100));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtDisponibilidad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -148,9 +156,9 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtDisponibilidad);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 790, 120));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 790, 90));
 
         jButton2.setBackground(new java.awt.Color(0, 204, 102));
         jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -192,6 +200,66 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_cbxCategoriaActionPerformed
+
+    private void cbxCategoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCategoriaItemStateChanged
+        
+        if ( evt.getStateChange() == ItemEvent.SELECTED ) {
+            
+            CategoriaDao categoria = (CategoriaDao)cbxCategoria.getSelectedItem();
+            
+            try {
+                
+                DefaultTableModel modelo = new DefaultTableModel();
+                jtDisponibilidad.setModel(modelo);
+
+                PreparedStatement sentencia_preparada;
+                ResultSet resultado;
+                ConexionBD conexionDB = new ConexionBD();
+                Connection conexion = ConexionBD.conectar();
+                String sql;
+                 
+                // Analizar la query que es lo que vamos a mostrar en la tabla
+                sql = "SELECT tituloLibro FROM libro WHERE id_Categoria=" + categoria.getId();
+                System.out.println(sql);
+                sentencia_preparada = conexion.prepareStatement(sql);
+                resultado = sentencia_preparada.executeQuery();
+                
+                ResultSetMetaData rsMd = resultado.getMetaData();
+                int cantidadColumnas = rsMd.getColumnCount();
+                
+                modelo.addColumn("Categoría");
+                modelo.addColumn("Autor");
+                modelo.addColumn("Libro");
+                modelo.addColumn("Estado");
+                modelo.addColumn("Seleccionar");
+                
+                int[] anchos = {50, 200};
+                
+                for ( int x = 0 ; x <= cantidadColumnas ; x++ ) {
+                    jtDisponibilidad.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
+                }
+                
+                while( resultado.next() ) {
+                 
+                    Object[] filas = new Object[cantidadColumnas];
+                    
+                    for ( int i = 0 ; i <= cantidadColumnas ; i++ ) {
+                        
+                        filas[i] = resultado.getObject( i + 1 );
+                    }
+                    
+                    modelo.addRow(filas);
+                    
+                }                
+                
+                
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+            
+        }
+        
+    }//GEN-LAST:event_cbxCategoriaItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -249,8 +317,8 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable jtDisponibilidad;
+    private javax.swing.JTable jtReservar;
     // End of variables declaration//GEN-END:variables
 }
