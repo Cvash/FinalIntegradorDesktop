@@ -70,10 +70,7 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Sala", "Hora", "Aforo", "Disponibles", "Title 5"

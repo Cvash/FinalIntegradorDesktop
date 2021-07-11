@@ -6,14 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import login_bd.Frm_reserva_citas;
+import metodos.dao.CategoriaDao;
 
 
 public class SQLmetodos {
    
-    Connection conexion;
-    PreparedStatement sentencia_preparada;
-    ResultSet resultado;
+    static Connection conexion;
+    static PreparedStatement sentencia_preparada;
+    static ResultSet resultado;
     String sql;
     // instanciamos el menu principal para que se muestre.
     Frm_reserva_citas reserva_cita = new Frm_reserva_citas();
@@ -78,6 +80,63 @@ public class SQLmetodos {
         }
         return resultado;
     }
+    
+    
+    public DefaultTableModel buscarLibro(String buscar)
+    {
+
+        int contador = 1; // Dedicado para acomular en número de registros que hay en la tabla
+        
+        String []  nombresColumnas = {"titulo","Año"};//Indica el nombre de las columnas en la tabla
+        String [] registros = new String[2];
+        
+        DefaultTableModel modelo = new DefaultTableModel(null, nombresColumnas);
+        String sql = "SELECT tituloLibro, anioLibro  FROM libro WHERE tituloLibro LIKE '%"+buscar+"%' OR anioLibro LIKE '%"+buscar+"%'";
+        
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;                           
+        
+        try
+        {
+            cn = ConexionBD.conectar();
+            pst = cn.prepareStatement(sql);   
+            rs = pst.executeQuery();
+            
+            while(rs.next())
+            {
+                registros[0] = rs.getString("tituloLibro");
+                registros[1] = rs.getString("anioLibro"); 
+                
+                modelo.addRow(registros);
+                
+                contador++;
+                
+            }                      
+        }
+        catch(SQLException e)
+        {
+            
+            JOptionPane.showMessageDialog(null,"Error al conectar. "+e.getMessage());
+            
+        }
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (pst != null) pst.close();
+                if (cn != null) cn.close();
+            }
+            catch(SQLException e)
+            {
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+         return modelo;
+    }    
+
+    
     
     
 }

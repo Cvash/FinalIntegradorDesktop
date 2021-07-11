@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import metodos.dao.CategoriaDao;
 
 import SQL.ConexionBD;
+import SQL.SQLmetodos;
 import java.sql.SQLException;
 
 public class Frm_reserva_citas extends javax.swing.JFrame {
@@ -22,6 +23,16 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         cbxCategoria.setModel(modelCategoria);
 
     }
+    
+    
+    public void buscarLibro(String buscar) {
+        SQLmetodos metodos = new SQLmetodos();
+        
+        DefaultTableModel modelo = metodos.buscarLibro(buscar);
+        
+        jtDisponibilidad.setModel(modelo);
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -40,8 +51,8 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         cbxCategoria = new javax.swing.JComboBox<>();
         cbxAutor = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        btnBusscar = new javax.swing.JButton();
+        txtLibro = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtReservar = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -107,23 +118,30 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
 
         jPanel2.add(cbxAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 256, 220, 40));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtLibroActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 314, 220, 40));
+        txtLibro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtLibroKeyReleased(evt);
+            }
+        });
+        jPanel2.add(txtLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 314, 220, 40));
 
-        btnBusscar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btnBusscar.setText("Buscar");
-        jPanel2.add(btnBusscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 320, -1, -1));
+        btnBuscar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 320, -1, -1));
 
         jtReservar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -135,10 +153,7 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
 
         jtDisponibilidad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -184,9 +199,9 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLibroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtLibroActionPerformed
 
     private void cbxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCategoriaActionPerformed
 
@@ -259,6 +274,17 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+       
+        
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtLibroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLibroKeyReleased
+        
+        buscarLibro(txtLibro.getText());
+        
+    }//GEN-LAST:event_txtLibroKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -295,7 +321,7 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBusscar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JComboBox<String> cbxAutor;
     private javax.swing.JComboBox<String> cbxCategoria;
     private javax.swing.JButton jButton2;
@@ -315,8 +341,8 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable jtDisponibilidad;
     private javax.swing.JTable jtReservar;
+    private javax.swing.JTextField txtLibro;
     // End of variables declaration//GEN-END:variables
 }
