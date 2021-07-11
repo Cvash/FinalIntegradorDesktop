@@ -38,11 +38,11 @@ public class Frm_new_user extends javax.swing.JFrame {
         direccion = new javax.swing.JLabel();
         plusDatoDNI = new javax.swing.JLabel();
         txtLogin = new javax.swing.JTextField();
-        txtpasswordNew = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         txtCelular = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
+        txtpasswordNew = new javax.swing.JPasswordField();
         txtDireccion = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
@@ -99,11 +99,13 @@ public class Frm_new_user extends javax.swing.JFrame {
         plusDatoDNI.setText("(*) Ingrese su DNI");
         jPanel1.add(plusDatoDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, -1, -1));
         jPanel1.add(txtLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 174, 180, 30));
-        jPanel1.add(txtpasswordNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 214, 180, 30));
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 254, 180, 30));
         jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 294, 180, 30));
         jPanel1.add(txtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 344, 180, 30));
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 394, 180, 30));
+
+        txtpasswordNew.setText("jPasswordField1");
+        jPanel1.add(txtpasswordNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 212, 180, 30));
         jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 444, 180, 30));
 
         btnRegistrar.setBackground(new java.awt.Color(0, 153, 51));
@@ -226,6 +228,6 @@ public class Frm_new_user extends javax.swing.JFrame {
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtpasswordNew;
+    private javax.swing.JPasswordField txtpasswordNew;
     // End of variables declaration//GEN-END:variables
 }
