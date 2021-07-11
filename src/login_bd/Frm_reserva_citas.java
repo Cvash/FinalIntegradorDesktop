@@ -1,18 +1,16 @@
-
 package login_bd;
 
-import SQL.ConexionBD;
 import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import metodos.dao.CategoriaDao;
 
 import SQL.ConexionBD;
+import java.sql.SQLException;
 
 public class Frm_reserva_citas extends javax.swing.JFrame {
 
@@ -22,7 +20,7 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         CategoriaDao categoria = new CategoriaDao();
         DefaultComboBoxModel modelCategoria = new DefaultComboBoxModel(categoria.mostrarCategoria());
         cbxCategoria.setModel(modelCategoria);
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -154,6 +152,11 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Reservar Libro");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 700, -1, -1));
 
         jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reserva de Libros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24), new java.awt.Color(0, 102, 102))); // NOI18N
@@ -186,70 +189,75 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void cbxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCategoriaActionPerformed
-  
+
     }//GEN-LAST:event_cbxCategoriaActionPerformed
 
     private void cbxCategoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCategoriaItemStateChanged
-        
-        if ( evt.getStateChange() == ItemEvent.SELECTED ) {
-            
-            CategoriaDao categoria = (CategoriaDao)cbxCategoria.getSelectedItem();
-            
+
+        if (evt.getStateChange() == ItemEvent.SELECTED ) {
+
+            CategoriaDao categoria = (CategoriaDao) cbxCategoria.getSelectedItem();
+
             try {
-                
+
                 DefaultTableModel modelo = new DefaultTableModel();
                 jtDisponibilidad.setModel(modelo);
 
-                PreparedStatement sentencia_preparada;
-                ResultSet resultado;
-                ConexionBD conexionDB = new ConexionBD();
-                Connection conexion = ConexionBD.conectar();
-                
+                PreparedStatement sentencia_preparada = null;
+                ResultSet resultado = null;
+                ConexionBD conn = new ConexionBD();
+                Connection conexion = conn.conectar();
 
                 String sql;
-                 
+
                 // Analizar la query que es lo que vamos a mostrar en la tabla
                 sql = "SELECT idLibro, tituloLibro, anioLibro FROM libro WHERE id_Categoria=" + categoria.getId();
                 System.out.println(sql);
                 sentencia_preparada = conexion.prepareStatement(sql);
                 resultado = sentencia_preparada.executeQuery();
-                
+
                 ResultSetMetaData rsMd = resultado.getMetaData();
                 int cantidadColumnas = rsMd.getColumnCount();
-                
+
                 modelo.addColumn("Id");
                 modelo.addColumn("Titulo");
-                modelo.addColumn("Ano Libro");
-//                modelo.addColumn("Estado");
-//                modelo.addColumn("Seleccionar");
-                
+                modelo.addColumn("Año Libro");
+
                 int[] anchos = {50, 200};
-                
-                for ( int x = 0 ; x < cantidadColumnas ; x++ ) {
-                    jtDisponibilidad.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
+
+                for (int i = 0; i < cantidadColumnas + 1 ; i++) {
+                    jtDisponibilidad.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+                    System.out.println(i);
                 }
-                
-                while( resultado.next() ) {
-                 
-                    final Object[] filas = new Object[cantidadColumnas];
-                    
-                    for ( int i = 0 ; i < cantidadColumnas ; i++ ) {
-                        
-                        filas[i] = resultado.getObject( i + 1 );
+
+                while (resultado.next()) {
+
+                    Object[] filas = new Object[cantidadColumnas];
+
+                    for (int i = 0; i < cantidadColumnas - 1 ; i++) {
+                        filas[i] = resultado.getObject(i + 1);
+                        System.out.println(i);
                     }
-                    
                     modelo.addRow(filas);
-                    
-                }                
+                }
+
+            } catch (SQLException ex) {
+                System.err.println("El error es: " + ex.toString());
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.err.println("Error Array: " + e);
                 
-                
-            } catch (Exception e) {
-                System.out.println("El error es: " + e.toString());
             }
-            
         }
-        
     }//GEN-LAST:event_cbxCategoriaItemStateChanged
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        Frm_reserva_sala reserva_sala = new Frm_reserva_sala();
+        reserva_sala.setVisible(true);
+        
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
