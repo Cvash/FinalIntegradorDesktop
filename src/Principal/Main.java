@@ -1,15 +1,15 @@
+package Principal;
 
-package login_bd;
 
+import login_bd.Frm_login;
 
-public class Login_bd {
-
+public class Main {
     
     public static void main(String[] args) {
         
+        
         //esto es para que inicialize desde el formulario login
         Frm_login.main(args);
- 
     }
     
 }

@@ -12,6 +12,9 @@ import metodos.dao.CategoriaDao;
 import SQL.ConexionBD;
 import SQL.SQLmetodos;
 import java.sql.SQLException;
+import javax.swing.JTable;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
 
 public class Frm_reserva_citas extends javax.swing.JFrame {
 
@@ -31,6 +34,15 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         DefaultTableModel modelo = metodos.buscarLibro(buscar);
         
         jtDisponibilidad.setModel(modelo);
+        
+        addCheckBox(2, jtDisponibilidad);
+        
+    }
+    
+    public void addCheckBox( int column, JTable jtDisponibilidad ) {
+        TableColumn tc = jtDisponibilidad.getColumnModel().getColumn(column);
+        tc.setCellEditor(jtDisponibilidad.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(jtDisponibilidad.getDefaultRenderer(Boolean.class));
     }
     
 
@@ -54,13 +66,15 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         txtLibro = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jtReservar = new javax.swing.JTable();
+        jtReserva = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtDisponibilidad = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -139,15 +153,15 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         });
         jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 320, -1, -1));
 
-        jtReservar.setModel(new javax.swing.table.DefaultTableModel(
+        jtReserva.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Titulo", "Año", "Title 3"
             }
         ));
-        jScrollPane2.setViewportView(jtReservar);
+        jScrollPane2.setViewportView(jtReserva);
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 650, 790, 100));
 
@@ -156,14 +170,14 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Titulo", "Año", "Title 3"
             }
         ));
         jScrollPane1.setViewportView(jtDisponibilidad);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 790, 90));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 790, 140));
 
-        jButton2.setBackground(new java.awt.Color(0, 204, 102));
+        jButton2.setBackground(new java.awt.Color(0, 102, 204));
         jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Reservar Libro");
@@ -173,6 +187,17 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 700, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(0, 153, 153));
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Seleccionados");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 550, -1, -1));
 
         jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reserva de Libros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24), new java.awt.Color(0, 102, 102))); // NOI18N
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 1120, 660));
@@ -184,6 +209,9 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
 
         jLabel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Disponibilidad de Libros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24), new java.awt.Color(0, 102, 102))); // NOI18N
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, 1010, 390));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/user.jpg"))); // NOI18N
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 20, 110, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -285,6 +313,24 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtLibroKeyReleased
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        TableModel modelo1 = jtDisponibilidad.getModel();
+        int[] filas = jtDisponibilidad.getSelectedRows();
+        Object[] row = new Object[3];
+        
+        DefaultTableModel modelo2 = (DefaultTableModel) jtReserva.getModel();
+        
+        for (int i = 0; i < filas.length; i++) {
+            row[0] = modelo1.getValueAt(filas[i], 0);
+            row[1] = modelo1.getValueAt(filas[i], 1);
+            row[2] = modelo1.getValueAt(filas[i], 2);
+            
+            modelo2.addRow(row);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -324,11 +370,13 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JComboBox<String> cbxAutor;
     private javax.swing.JComboBox<String> cbxCategoria;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -342,7 +390,7 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtDisponibilidad;
-    private javax.swing.JTable jtReservar;
+    private javax.swing.JTable jtReserva;
     private javax.swing.JTextField txtLibro;
     // End of variables declaration//GEN-END:variables
 }

@@ -87,7 +87,7 @@ public class SQLmetodos {
 
         int contador = 1; // Dedicado para acomular en número de registros que hay en la tabla
         
-        String []  nombresColumnas = {"titulo","Año"};//Indica el nombre de las columnas en la tabla
+        String []  nombresColumnas = {"titulo","Año", "Seleccionar"};//Indica el nombre de las columnas en la tabla
         String [] registros = new String[2];
         
         DefaultTableModel modelo = new DefaultTableModel(null, nombresColumnas);
