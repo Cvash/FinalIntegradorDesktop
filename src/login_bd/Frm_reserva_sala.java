@@ -43,7 +43,7 @@ public class Frm_reserva_sala extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btnReservaSala = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtReservaSala = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -118,7 +118,7 @@ public class Frm_reserva_sala extends javax.swing.JFrame {
         });
         jPanel1.add(btnReservaSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 740, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtReservaSala.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -126,9 +126,9 @@ public class Frm_reserva_sala extends javax.swing.JFrame {
                 "Categoría", "Autor", "Libro"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtReservaSala);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 560, 790, 100));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 590, 790, 140));
 
         jLabel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reserva de Libro en Sala", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24), new java.awt.Color(0, 102, 102))); // NOI18N
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 440, 890, 350));
@@ -175,6 +175,7 @@ public class Frm_reserva_sala extends javax.swing.JFrame {
         reserva_cita_sala.setVisible(true);
         
         this.setVisible(false);
+        
     }//GEN-LAST:event_btnReservaSalaActionPerformed
 
     /**
@@ -231,7 +232,7 @@ public class Frm_reserva_sala extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public static javax.swing.JTable jtReservaSala;
     private javax.swing.JLabel txtDNIUsuario;
     private javax.swing.JTextField txtLibro;
     private javax.swing.JLabel txtUsuario;

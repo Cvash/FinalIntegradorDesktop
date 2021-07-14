@@ -16,6 +16,9 @@ import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
+import login_bd.Frm_reserva_sala;
+
+
 public class Frm_reserva_citas extends javax.swing.JFrame {
 
     public Frm_reserva_citas() {
@@ -29,12 +32,10 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
     
     
     public void buscarLibro(String buscar) {
+        
         SQLmetodos metodos = new SQLmetodos();
-        
         DefaultTableModel modelo = metodos.buscarLibro(buscar);
-        
         jtDisponibilidad.setModel(modelo);
-        
         addCheckBox(2, jtDisponibilidad);
         
     }
@@ -302,7 +303,6 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         reserva_sala.setVisible(true);
         
         this.setVisible(false);
-        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -311,9 +311,7 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtLibroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLibroKeyReleased
-        
-        buscarLibro(txtLibro.getText());
-        
+           buscarLibro(txtLibro.getText());  
     }//GEN-LAST:event_txtLibroKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -393,7 +391,7 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtDisponibilidad;
-    private javax.swing.JTable jtReserva;
+    public static javax.swing.JTable jtReserva;
     private javax.swing.JTextField txtLibro;
     // End of variables declaration//GEN-END:variables
 }
