@@ -3,7 +3,9 @@ package login_bd;
 import SQL.SQLmetodos;
 
 public class Frm_login extends javax.swing.JFrame {
-
+    
+    private int limite  = 9;
+    
     public Frm_login() {
         initComponents();
     }
@@ -54,26 +56,33 @@ public class Frm_login extends javax.swing.JFrame {
         background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, 440, 660));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Iniciar Sesion");
         background.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Usuario:");
         background.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Contraseña:");
         background.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, -1, -1));
 
         txtUser.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         txtUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUserKeyTyped(evt);
+            }
+        });
         background.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 260, 40));
 
         txtPassword.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         txtPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyTyped(evt);
+            }
+        });
         background.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 432, 260, 40));
 
         btnIngresar.setBackground(new java.awt.Color(51, 101, 166));
@@ -133,6 +142,16 @@ public class Frm_login extends javax.swing.JFrame {
         this.setVisible(false); 
     }//GEN-LAST:event_btnNuevoUsuarioActionPerformed
 
+    private void txtUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyTyped
+        if (txtUser.getText().length()== limite)
+            evt.consume();
+    }//GEN-LAST:event_txtUserKeyTyped
+
+    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
+        if (txtPassword.getText().length()== limite)
+                evt.consume();
+    }//GEN-LAST:event_txtPasswordKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -167,6 +186,7 @@ public class Frm_login extends javax.swing.JFrame {
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;

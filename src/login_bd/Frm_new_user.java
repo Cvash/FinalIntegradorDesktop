@@ -18,6 +18,8 @@ public class Frm_new_user extends javax.swing.JFrame {
     
     SQLmetodos SQLmetodos = new SQLmetodos();
 
+    private int limite  = 9;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,7 +58,6 @@ public class Frm_new_user extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         login.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        login.setForeground(new java.awt.Color(0, 0, 0));
         login.setText("Login:");
         jPanel1.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
 
@@ -64,33 +65,27 @@ public class Frm_new_user extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(711, 0, 460, 660));
 
         password.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        password.setForeground(new java.awt.Color(0, 0, 0));
         password.setText("Password:");
         password.setToolTipText("");
         jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, -1, -1));
 
         nombre.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        nombre.setForeground(new java.awt.Color(0, 0, 0));
         nombre.setText("Nombre(s):");
         jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, -1, -1));
 
         apellido.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        apellido.setForeground(new java.awt.Color(0, 0, 0));
         apellido.setText("Apellidos:");
         jPanel1.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, -1, -1));
 
         celular.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        celular.setForeground(new java.awt.Color(0, 0, 0));
         celular.setText("N° de Celular:");
         jPanel1.add(celular, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, -1, -1));
 
         correo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        correo.setForeground(new java.awt.Color(0, 0, 0));
         correo.setText("Correo Electrónico:");
         jPanel1.add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, -1, -1));
 
         direccion.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        direccion.setForeground(new java.awt.Color(0, 0, 0));
         direccion.setText("Dirección:");
         jPanel1.add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, -1, -1));
 
@@ -98,13 +93,23 @@ public class Frm_new_user extends javax.swing.JFrame {
         plusDatoDNI.setForeground(new java.awt.Color(0, 102, 102));
         plusDatoDNI.setText("(*) Ingrese su DNI");
         jPanel1.add(plusDatoDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, -1, -1));
+
+        txtLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLoginKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 174, 180, 30));
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 254, 180, 30));
         jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 294, 180, 30));
         jPanel1.add(txtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 344, 180, 30));
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 394, 180, 30));
 
-        txtpasswordNew.setText("jPasswordField1");
+        txtpasswordNew.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtpasswordNewKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtpasswordNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 212, 180, 30));
         jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 444, 180, 30));
 
@@ -119,8 +124,7 @@ public class Frm_new_user extends javax.swing.JFrame {
         });
         jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 570, -1, -1));
 
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nuevo Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24), new java.awt.Color(0, 0, 0))); // NOI18N
+        jLabel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nuevo Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24))); // NOI18N
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 640, 500));
 
         jButton1.setBackground(new java.awt.Color(255, 0, 51));
@@ -170,6 +174,16 @@ public class Frm_new_user extends javax.swing.JFrame {
         this.setVisible(false);
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtLoginKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoginKeyTyped
+    if (txtLogin.getText().length()== limite)
+            evt.consume();
+    }//GEN-LAST:event_txtLoginKeyTyped
+
+    private void txtpasswordNewKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordNewKeyTyped
+        if (txtpasswordNew.getText().length()== limite)
+            evt.consume();
+    }//GEN-LAST:event_txtpasswordNewKeyTyped
 
     /**
      * @param args the command line arguments
