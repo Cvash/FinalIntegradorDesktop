@@ -13,7 +13,7 @@ public class ConexionBD {
     
     private static String URL = "jdbc:mysql://localhost:3306/biblioteca_integrador";
     private static String USER = "root";
-    private static String PASSWORD = "toor";
+    private static String PASSWORD = "";
     
     
     public static Connection conectar(){
@@ -44,10 +44,5 @@ public class ConexionBD {
             
         }
     }
-<<<<<<< HEAD
-    */
-     /* MENSAJE DE PRUEBA*/
-=======
-    
->>>>>>> master
+
 }
