@@ -25,7 +25,6 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         CategoriaDao categoria = new CategoriaDao();
         DefaultComboBoxModel modelCategoria = new DefaultComboBoxModel(categoria.mostrarCategoria());
         cbxCategoria.setModel(modelCategoria);
-
     }
     
     public void buscarLibro(String buscar) {
