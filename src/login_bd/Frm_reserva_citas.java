@@ -16,9 +16,6 @@ import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
-//import login_bd.Frm_reserva_sala;
-
-
 public class Frm_reserva_citas extends javax.swing.JFrame {
 
     public Frm_reserva_citas() {
@@ -29,23 +26,21 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         cbxCategoria.setModel(modelCategoria);
 
     }
-    
-    
+
     public void buscarLibro(String buscar) {
-        
+
         SQLmetodos metodos = new SQLmetodos();
         DefaultTableModel modelo = metodos.buscarLibro(buscar);
         jtDisponibilidad.setModel(modelo);
         addCheckBox(2, jtDisponibilidad);
-        
+
     }
-    
-    public void addCheckBox( int column, JTable jtDisponibilidad ) {
+
+    public void addCheckBox(int column, JTable jtDisponibilidad) {
         TableColumn tc = jtDisponibilidad.getColumnModel().getColumn(column);
         tc.setCellEditor(jtDisponibilidad.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(jtDisponibilidad.getDefaultRenderer(Boolean.class));
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -174,9 +169,17 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Titulo", "Año", "Title 3"
+                "Titulo", "Año", "Seleccione"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jtDisponibilidad);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 790, 140));
@@ -241,12 +244,11 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
 
     private void cbxCategoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCategoriaItemStateChanged
 
-        if (evt.getStateChange() == ItemEvent.SELECTED ) {
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
 
             CategoriaDao categoria = (CategoriaDao) cbxCategoria.getSelectedItem();
 
             try {
-
                 DefaultTableModel modelo = new DefaultTableModel();
                 jtDisponibilidad.setModel(modelo);
 
@@ -272,7 +274,7 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
 
                 int[] anchos = {50, 200};
 
-                for (int i = 0; i < cantidadColumnas + 1 ; i++) {
+                for (int i = 0; i < cantidadColumnas + 1; i++) {
                     jtDisponibilidad.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
                     System.out.println(i);
                 }
@@ -281,7 +283,7 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
 
                     Object[] filas = new Object[cantidadColumnas];
 
-                    for (int i = 0; i < cantidadColumnas - 1 ; i++) {
+                    for (int i = 0; i < cantidadColumnas - 1; i++) {
                         filas[i] = resultado.getObject(i + 1);
                         System.out.println(i);
                     }
@@ -292,45 +294,50 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
                 System.err.println("El error es: " + ex.toString());
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.err.println("Error Array: " + e);
-                
+
             }
         }
     }//GEN-LAST:event_cbxCategoriaItemStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         Frm_reserva_sala reserva_sala = new Frm_reserva_sala();
         reserva_sala.setVisible(true);
-        
+
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       
-        
+
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtLibroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLibroKeyReleased
-           buscarLibro(txtLibro.getText());  
+        buscarLibro(txtLibro.getText());
     }//GEN-LAST:event_txtLibroKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         TableModel modelo1 = jtDisponibilidad.getModel();
-        int filas [] = jtDisponibilidad.getSelectedRows();
-        Object [] row = new Object[3];
-        
-        DefaultTableModel modelo2 = (DefaultTableModel)jtReserva.getModel();
-        
-        for (int i = 0; i < filas.length; i++) {
-            row[0] = modelo1.getValueAt(filas[i], 0);
-            row[1] = modelo1.getValueAt(filas[i], 1);
-            row[2] = modelo1.getValueAt(filas[i], 2);
-            
-            modelo2.addRow(row);
+        int[] filas = jtDisponibilidad.getSelectedRows();
+
+        if (filas.length > 0) {
+            System.out.println("si hay datos");
+            Object[] row = new Object[3];
+
+            DefaultTableModel modelo2 = (DefaultTableModel) jtReserva.getModel();
+
+            for (int i = 0; i < filas.length; i++) {
+
+                row[0] = modelo1.getValueAt(filas[i], 0);
+                row[1] = modelo1.getValueAt(filas[i], 1);
+                //row[2] = modelo1.getValueAt(filas[i], 2);
+
+                modelo2.addRow(row);
+            }
+        }else {
+            System.out.println("No hay datos!");
         }
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
