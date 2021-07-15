@@ -7,9 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import login_bd.Frm_reserva_cita_sala;
 import login_bd.Frm_reserva_citas;
-import metodos.dao.CategoriaDao;
-
 
 public class SQLmetodos {
    
@@ -19,14 +18,14 @@ public class SQLmetodos {
     String sql;
     // instanciamos el menu principal para que se muestre.
     Frm_reserva_citas reserva_cita = new Frm_reserva_citas();
-    
+
     // Usuario es el DNI - contraseña es contrasenia de la base de datos.
     // Para el login
     public void buscarUsuarioRegistrado(String user, String contrasenia) {
         
         try {
             conexion = ConexionBD.conectar();
-            sql = "SELECT usuarioRegistrado, contrasenia FROM usuario WHERE usuarioRegistrado = '" + user + "' && contrasenia = '" + contrasenia + "'";
+            sql = "SELECT usuarioRegistrado, contrasenia, nombre, apellido FROM usuario WHERE usuarioRegistrado = '" + user + "' && contrasenia = '" + contrasenia + "'";
             sentencia_preparada = conexion.prepareStatement(sql);
            // System.out.println(sentencia_preparada);
             // ejecutamos la query
@@ -36,11 +35,10 @@ public class SQLmetodos {
             if ( resultado.next() ) {
                 user = resultado.getString("usuarioRegistrado");
                 contrasenia = resultado.getString("contrasenia");
-                
+
                 //mostraremos el menú principal.
                 reserva_cita.setVisible(true);
-                
-                //conexion.close();
+                   
             } else {
                 JOptionPane.showMessageDialog(null, "Error en el usuario o contraseña Ingresada!");
             }
@@ -53,8 +51,6 @@ public class SQLmetodos {
         }
         
     }
-    
-    
     
     //metodo para guardar datos usuario
     public int guardar(String usuarioRegistrado, String contrasenia, String nombre, String apellido, String email, String telefono, String direccion) {
@@ -134,9 +130,29 @@ public class SQLmetodos {
             }
         }
          return modelo;
-    }    
+    }
+     
+    public void datosUsuarioLogin(String user, String contrasenia) {
+        
+        try {
+            conexion = ConexionBD.conectar();
+            
+            sql = "SELECT usuarioRegistrado, nombre, apellido FROM usuario WHERE usuarioRegistrado = '" + user + "' && contrasenia = '" + contrasenia + "'";
+            
+            sentencia_preparada = conexion.prepareStatement(sql);
+            resultado = sentencia_preparada.executeQuery();
 
+            if ( resultado.next() ) {
+                reserva_cita.lblUsuario.setText(resultado.getString("usuarioRegistrado"));
+                reserva_cita.lblUsuarioNombre.setText(resultado.getString("nombre") + " " + resultado.getString("apellido"));
     
-    
+                conexion.close();
+            }
+
+        } catch ( SQLException e) {
+            System.out.println("Error: " +e);
+        }
+        
+    }
     
 }
