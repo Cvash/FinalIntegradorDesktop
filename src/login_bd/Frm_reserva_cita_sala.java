@@ -6,6 +6,15 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import SQL.ConexionBD;
+import com.toedter.calendar.JDateChooser;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.util.Locale;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
 
 public class Frm_reserva_cita_sala extends javax.swing.JFrame {
 
@@ -28,7 +37,7 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         btnReservaSala = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblDisponibilidadSala = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         dateFecReserva = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
@@ -74,15 +83,15 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
         });
         jPanel1.add(btnReservaSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 680, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblDisponibilidadSala.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Sala", "Hora", "Aforo", "Disponibles", "Title 5"
+                "Sala", "Hora", "Aforo", "Disponible"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblDisponibilidadSala);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 480, 790, 100));
 
@@ -137,6 +146,11 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
         btnBuscarDisponibilidad.setBackground(new java.awt.Color(0, 153, 153));
         btnBuscarDisponibilidad.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscarDisponibilidad.setText("Buscar");
+        btnBuscarDisponibilidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarDisponibilidadActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnBuscarDisponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, -1, -1));
 
         contenedorReservaCitas.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -173,8 +187,19 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
    
     private void btnReservaSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservaSalaActionPerformed
-        Frm_reserva_exitosa reserva_exitosa = new Frm_reserva_exitosa();
-        reserva_exitosa.setVisible(true);     
+        Frm_reserva_exitosa reserva_sala = new Frm_reserva_exitosa();
+        reserva_sala.setVisible(true);  
+        //Datos a pasar a la Reserva de sala exitósa
+        reserva_sala.lblUsuario.setText(lblUsuario.getText());
+        reserva_sala.lblUsuarioNombre.setText(lblUsuarioNombre.getText());
+        //Fecha
+        Date  fechaFormulario = dateFecReserva.getDate();
+        DateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        String fecha = f.format(fechaFormulario);
+        reserva_sala.lblFecha.setText(fecha);
+        String msjReservaExitosa = lblUsuarioNombre.getText() + ", tu reserva de sala de lectura se realizó exitósamente.";
+        reserva_sala.lblUsuarioMsj.setText(msjReservaExitosa);
+        
         this.setVisible(false);
     }//GEN-LAST:event_btnReservaSalaActionPerformed
 
@@ -200,6 +225,19 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
         this.setVisible(false); 
         
     }//GEN-LAST:event_btnReservaLibrosActionPerformed
+
+    private void btnBuscarDisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDisponibilidadActionPerformed
+        
+        SQLmetodos logica = new SQLmetodos();
+        
+        Date  fechaFormulario = dateFecReserva.getDate();
+        DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = f.format(fechaFormulario);
+
+        DefaultTableModel modelo = logica.buscarSalaDisponible(fecha);
+        tblDisponibilidadSala.setModel(modelo);
+
+    }//GEN-LAST:event_btnBuscarDisponibilidadActionPerformed
    
     
     /**
@@ -260,9 +298,9 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblMenu;
     public javax.swing.JLabel lblUsuario;
     public javax.swing.JLabel lblUsuarioNombre;
+    private javax.swing.JTable tblDisponibilidadSala;
     // End of variables declaration//GEN-END:variables
 }

@@ -49,7 +49,7 @@ public class Frm_login extends javax.swing.JFrame {
         background.add(user_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 260));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel5.setText("Iniciar Sesion");
+        jLabel5.setText("Iniciar Sesión");
         background.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N

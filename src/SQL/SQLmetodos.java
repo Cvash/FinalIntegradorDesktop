@@ -155,4 +155,64 @@ public class SQLmetodos {
         
     }
     
+    public DefaultTableModel buscarSalaDisponible(String fecha)
+    {
+       
+        String []  nombresColumnas = {"Sala","Hora","Aforo","Disponible"};//Indica el nombre de las columnas en la tabla
+        String [] registros = new String[4];
+        
+        DefaultTableModel modelo = new DefaultTableModel(null, nombresColumnas);
+        String sql="SELECT c.idSala,c.nombreSala as sala,d.descripcionHorario as horario,c.aforoSala as aforo, count(distinct a.idReserva) reservados, c.aforoSala - count(distinct a.idReserva) as disponibles\n" +
+                    "FROM biblioteca_integrador.reserva a inner join biblioteca_integrador.reserva_detalle b on a.idReserva = b.id_Reserva\n" +
+                    "inner join biblioteca_integrador.sala c on a.id_Sala = c.idSala\n" +
+                    "inner join biblioteca_integrador.horario d on c.idHorarioSala = d.idHorario\n" +
+                    "where a.fechaReserva = '" + fecha + "' \n" +
+                    "and a.estadoReserva = 1 and b.estadoReservaDetalle = 1\n" +
+                    "group by c.idSala, c.aforoSala,d.descripcionHorario";
+        
+        //String sql = "SELECT tituloLibro, anioLibro  FROM libro WHERE tituloLibro LIKE '%"+buscar+"%' OR anioLibro LIKE '%"+buscar+"%'";
+        
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;                           
+        
+        try
+        {
+            cn = ConexionBD.conectar();
+            pst = cn.prepareStatement(sql);   
+            rs = pst.executeQuery();
+            
+            while(rs.next())
+            {
+                registros[0] = rs.getString("sala");
+                registros[1] = rs.getString("horario"); 
+                registros[2] = rs.getString("aforo");
+                registros[3] = rs.getString("disponibles"); 
+                
+                modelo.addRow(registros);
+                
+            }                      
+        }
+        catch(SQLException e)
+        {
+            
+            JOptionPane.showMessageDialog(null,"Error al conectar. "+e.getMessage());
+            
+        }
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (pst != null) pst.close();
+                if (cn != null) cn.close();
+            }
+            catch(SQLException e)
+            {
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+         return modelo;
+    }
+    
 }
