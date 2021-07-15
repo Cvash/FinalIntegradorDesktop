@@ -16,7 +16,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
-import login_bd.Frm_reserva_sala;
+//import login_bd.Frm_reserva_sala;
 
 
 public class Frm_reserva_citas extends javax.swing.JFrame {
@@ -315,12 +315,12 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLibroKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         TableModel modelo1 = jtDisponibilidad.getModel();
-        int[] filas = jtDisponibilidad.getSelectedRows();
-        Object[] row = new Object[3];
+        int filas [] = jtDisponibilidad.getSelectedRows();
+        Object [] row = new Object[3];
         
-        DefaultTableModel modelo2 = (DefaultTableModel) jtReserva.getModel();
+        DefaultTableModel modelo2 = (DefaultTableModel)jtReserva.getModel();
         
         for (int i = 0; i < filas.length; i++) {
             row[0] = modelo1.getValueAt(filas[i], 0);
@@ -329,6 +329,7 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
             
             modelo2.addRow(row);
         }
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
