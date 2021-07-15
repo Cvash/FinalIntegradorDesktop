@@ -1,12 +1,22 @@
 
 package login_bd;
 
+import SQL.SQLmetodos;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class Frm_reserva_cita_sala extends javax.swing.JFrame {
 
     public Frm_reserva_cita_sala() {
+        
         initComponents();
+        
+        Calendar fechaActual = new GregorianCalendar();
+        dateFecReserva.setCalendar(fechaActual);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -15,18 +25,22 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtDNIUsuario = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btnReservaSala = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dateFecReserva = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        btnReservaCitasSalas = new javax.swing.JButton();
+        btnReservaLibros = new javax.swing.JButton();
+        lblMenu = new javax.swing.JLabel();
+        btnBuscarDisponibilidad = new javax.swing.JButton();
+        contenedorReservaCitas = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblUsuarioNombre = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reserva de citas pata lectura de libros en sala");
@@ -38,24 +52,16 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel2.setText("Reserva de citas para lectura de libros en sala");
+        jLabel2.setText("Reserva de Citas para Lectura de Libros en Sala");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 2, 20)); // NOI18N
         jLabel3.setText("Biblioteca Histórica del Palacio Municipal");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
 
-        txtDNIUsuario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        txtDNIUsuario.setText("40567890");
-        jPanel1.add(txtDNIUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 30, -1, -1));
-
-        txtUsuario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        txtUsuario.setText("MARIO LUIS");
-        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 30, -1, -1));
-
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel7.setText("Ingresar Fecha:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 236, -1, 20));
+        jLabel7.setText("Fecha:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, -1, 30));
 
         btnReservaSala.setBackground(new java.awt.Color(0, 102, 51));
         btnReservaSala.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -66,7 +72,7 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
                 btnReservaSalaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnReservaSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 740, -1, -1));
+        jPanel1.add(btnReservaSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 680, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -80,13 +86,10 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 480, 790, 100));
 
-        jButton2.setText("jButton2");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
-
         jLabel10.setText("   ");
         jLabel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Disponibilidad de Salas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24), new java.awt.Color(0, 102, 102))); // NOI18N
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 890, 410));
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 280, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 890, 390));
+        jPanel1.add(dateFecReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 150, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 102, 153));
         jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -97,14 +100,62 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 670, 150, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 730, 150, -1));
 
-        jLabel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Historial", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18), new java.awt.Color(0, 51, 102))); // NOI18N
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 230, 640));
+        btnSalir.setBackground(new java.awt.Color(0, 102, 153));
+        btnSalir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 250, -1));
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reserva de Citas de sala de Lectura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24), new java.awt.Color(0, 102, 102))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 1120, 660));
+        btnReservaCitasSalas.setBackground(new java.awt.Color(0, 102, 153));
+        btnReservaCitasSalas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnReservaCitasSalas.setForeground(new java.awt.Color(255, 255, 255));
+        btnReservaCitasSalas.setText("Reserva de Citas de Salas");
+        btnReservaCitasSalas.setEnabled(false);
+        jPanel1.add(btnReservaCitasSalas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 250, -1));
+
+        btnReservaLibros.setBackground(new java.awt.Color(0, 102, 153));
+        btnReservaLibros.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnReservaLibros.setForeground(new java.awt.Color(255, 255, 255));
+        btnReservaLibros.setText("Reserva de Libros");
+        btnReservaLibros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReservaLibrosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnReservaLibros, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 173, 250, 30));
+
+        lblMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Menú", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18), new java.awt.Color(0, 51, 102))); // NOI18N
+        jPanel1.add(lblMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 270, 660));
+
+        btnBuscarDisponibilidad.setBackground(new java.awt.Color(0, 153, 153));
+        btnBuscarDisponibilidad.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarDisponibilidad.setText("Buscar");
+        jPanel1.add(btnBuscarDisponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, -1, -1));
+
+        contenedorReservaCitas.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        contenedorReservaCitas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reserva de Citas de Salas de Lectura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24), new java.awt.Color(0, 102, 102))); // NOI18N
+        jPanel1.add(contenedorReservaCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 1120, 670));
+
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/usuario.png"))); // NOI18N
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 20, -1, 60));
+
+        lblUsuarioNombre.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblUsuarioNombre.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblUsuarioNombre.setText("lblUsuarioNombre");
+        jPanel1.add(lblUsuarioNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 50, 210, -1));
+
+        lblUsuario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblUsuario.setText("lblUsuario");
+        jPanel1.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 30, 210, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,21 +171,37 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+   
     private void btnReservaSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservaSalaActionPerformed
         Frm_reserva_exitosa reserva_exitosa = new Frm_reserva_exitosa();
-        reserva_exitosa.setVisible(true);
-        
+        reserva_exitosa.setVisible(true);     
         this.setVisible(false);
     }//GEN-LAST:event_btnReservaSalaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Frm_reserva_sala reserva_sala = new Frm_reserva_sala();
-        reserva_sala.setVisible(true);
+        Frm_reserva_citas reserva_libros = new Frm_reserva_citas();
+        reserva_libros.setVisible(true);
+        this.setVisible(false); 
         
-        this.setVisible(false);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        Frm_login login = new Frm_login();
+        login.setVisible(true);
+        this.setVisible(false); 
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnReservaLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservaLibrosActionPerformed
+        Frm_reserva_citas reserva_libros = new Frm_reserva_citas();
+        reserva_libros.setVisible(true);
+        reserva_libros.lblUsuario.setText(lblUsuario.getText());
+        reserva_libros.lblUsuarioNombre.setText(lblUsuarioNombre.getText());
+        this.setVisible(false); 
+        
+    }//GEN-LAST:event_btnReservaLibrosActionPerformed
+   
+    
     /**
      * @param args the command line arguments
      */
@@ -171,24 +238,31 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
                 new Frm_reserva_cita_sala().setVisible(true);
             }
         });
+        
+      
+        //dateFecReserva.setDateFormatString(fechaActual);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarDisponibilidad;
+    private javax.swing.JButton btnReservaCitasSalas;
+    private javax.swing.JButton btnReservaLibros;
     private javax.swing.JButton btnReservaSala;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JLabel contenedorReservaCitas;
+    private com.toedter.calendar.JDateChooser dateFecReserva;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel txtDNIUsuario;
-    private javax.swing.JLabel txtUsuario;
+    private javax.swing.JLabel lblMenu;
+    public javax.swing.JLabel lblUsuario;
+    public javax.swing.JLabel lblUsuarioNombre;
     // End of variables declaration//GEN-END:variables
 }

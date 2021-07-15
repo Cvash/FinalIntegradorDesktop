@@ -5,23 +5,21 @@ import SQL.SQLmetodos;
 public class Frm_login extends javax.swing.JFrame {
     
     private int limite  = 9;
-    
+
     public Frm_login() {
         initComponents();
     }
     // instanciamos el metodo
     SQLmetodos SQLmetodos = new SQLmetodos();
     Frm_reserva_citas reservaCita = new Frm_reserva_citas();
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         background = new javax.swing.JPanel();
         logo_icon = new javax.swing.JLabel();
-        txtNombreBiblioteca = new javax.swing.JLabel();
         user_login = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -29,6 +27,10 @@ public class Frm_login extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
         btnNuevoUsuario = new javax.swing.JButton();
+        txtNombreBiblioteca1 = new javax.swing.JLabel();
+        txtNombreBiblioteca = new javax.swing.JLabel();
+        txtNombreBiblioteca2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar Sesión");
@@ -41,19 +43,10 @@ public class Frm_login extends javax.swing.JFrame {
         logo_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo_biblioteca.png"))); // NOI18N
         background.add(logo_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, 440, 200));
 
-        txtNombreBiblioteca.setBackground(new java.awt.Color(255, 255, 255));
-        txtNombreBiblioteca.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
-        txtNombreBiblioteca.setForeground(new java.awt.Color(255, 255, 255));
-        txtNombreBiblioteca.setText("Nombre de la Biblioteca");
-        background.add(txtNombreBiblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 420, 340, 90));
-
         user_login.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         user_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/user_login.png"))); // NOI18N
         user_login.setMaximumSize(new java.awt.Dimension(256, 2560));
         background.add(user_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 260));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
-        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, 440, 660));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel5.setText("Iniciar Sesion");
@@ -109,11 +102,35 @@ public class Frm_login extends javax.swing.JFrame {
         });
         background.add(btnNuevoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 540, 230, 50));
 
+        txtNombreBiblioteca1.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombreBiblioteca1.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
+        txtNombreBiblioteca1.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombreBiblioteca1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtNombreBiblioteca1.setText("Biblioteca Histórica");
+        background.add(txtNombreBiblioteca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 350, 390, 70));
+
+        txtNombreBiblioteca.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombreBiblioteca.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
+        txtNombreBiblioteca.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombreBiblioteca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtNombreBiblioteca.setText("Palacio Municipal");
+        background.add(txtNombreBiblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 450, 280, 70));
+
+        txtNombreBiblioteca2.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombreBiblioteca2.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
+        txtNombreBiblioteca2.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombreBiblioteca2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtNombreBiblioteca2.setText("del");
+        background.add(txtNombreBiblioteca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 400, 390, 70));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpg"))); // NOI18N
+        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, 440, 660));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 1172, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,10 +144,12 @@ public class Frm_login extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // lleva los datos al metodo SQL
         SQLmetodos.buscarUsuarioRegistrado(txtUser.getText(), txtPassword.getText());
+        SQLmetodos.datosUsuarioLogin(txtUser.getText(), txtPassword.getText());
         
         if ( reservaCita.isEnabled() ) {
             this.dispose();
         }
+        
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoUsuarioActionPerformed
@@ -198,6 +217,8 @@ public class Frm_login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel logo_icon;
     private javax.swing.JLabel txtNombreBiblioteca;
+    private javax.swing.JLabel txtNombreBiblioteca1;
+    private javax.swing.JLabel txtNombreBiblioteca2;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     private javax.swing.JLabel user_login;
