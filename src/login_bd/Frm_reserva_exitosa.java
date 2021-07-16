@@ -34,6 +34,7 @@ public class Frm_reserva_exitosa extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         lblFecha = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         lblMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,15 +71,15 @@ public class Frm_reserva_exitosa extends javax.swing.JFrame {
 
         lblSalaMsj.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblSalaMsj.setText("lblSalaMsj");
-        jPanel1.add(lblSalaMsj, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, -1, -1));
+        jPanel1.add(lblSalaMsj, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 480, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel9.setText("Fecha: ");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 520, -1, -1));
+        jLabel9.setText("Sala:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, -1, -1));
 
         lblFechaMsj.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblFechaMsj.setText("lblFechaMsj");
-        jPanel1.add(lblFechaMsj, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 520, -1, -1));
+        jPanel1.add(lblFechaMsj, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 520, 130, -1));
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel12.setText("Hora:");
@@ -86,7 +87,7 @@ public class Frm_reserva_exitosa extends javax.swing.JFrame {
 
         lblHoraMsj.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblHoraMsj.setText("lblHoraMsj");
-        jPanel1.add(lblHoraMsj, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 560, -1, -1));
+        jPanel1.add(lblHoraMsj, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 560, -1, -1));
 
         lblUsuarioMsj.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblUsuarioMsj.setText("lblUsuarioMsj");
@@ -166,6 +167,10 @@ public class Frm_reserva_exitosa extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reserva de Citas de Sala de Lectura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24), new java.awt.Color(0, 102, 102))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 1120, 660));
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel11.setText("Fecha: ");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 520, -1, -1));
 
         lblMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Menú", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18), new java.awt.Color(0, 51, 102))); // NOI18N
         jPanel1.add(lblMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 270, 660));
@@ -258,6 +263,7 @@ public class Frm_reserva_exitosa extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;

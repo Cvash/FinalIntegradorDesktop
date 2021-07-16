@@ -17,7 +17,11 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
 public class Frm_reserva_cita_sala extends javax.swing.JFrame {
-
+    
+    String idSalaReservada ="";
+    String salaReservada ="";
+    String horaReservada= "";
+    
     public Frm_reserva_cita_sala() {
         
         initComponents();
@@ -97,6 +101,11 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblDisponibilidadSala.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDisponibilidadSalaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblDisponibilidadSala);
@@ -207,6 +216,9 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
         reserva_sala.lblFecha.setText(fecha);
         String msjReservaExitosa = lblUsuarioNombre.getText() + ", tu reserva de sala de lectura se realizó exitósamente.";
         reserva_sala.lblUsuarioMsj.setText(msjReservaExitosa);
+        reserva_sala.lblSalaMsj.setText(salaReservada);
+        reserva_sala.lblFechaMsj.setText(fecha);
+        reserva_sala.lblHoraMsj.setText(horaReservada);
         
         this.setVisible(false);
     }//GEN-LAST:event_btnReservaSalaActionPerformed
@@ -246,6 +258,14 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
         tblDisponibilidadSala.setModel(modelo);
 
     }//GEN-LAST:event_btnBuscarDisponibilidadActionPerformed
+
+    private void tblDisponibilidadSalaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDisponibilidadSalaMouseClicked
+        int seleccionar = tblDisponibilidadSala.rowAtPoint(evt.getPoint());
+        
+        salaReservada = String.valueOf(tblDisponibilidadSala.getValueAt(seleccionar, 0));
+        horaReservada = String.valueOf(tblDisponibilidadSala.getValueAt(seleccionar, 1));
+        
+    }//GEN-LAST:event_tblDisponibilidadSalaMouseClicked
    
     
     /**
