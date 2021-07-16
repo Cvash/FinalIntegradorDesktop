@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package login_bd;
+
+import SQL.SQLmetodos;
 
 /**
  *
@@ -16,7 +13,10 @@ public class Frm_new_user extends javax.swing.JFrame {
      */
     public Frm_new_user() {
         initComponents();
+        setLocationRelativeTo(null);
     }
+    
+    SQLmetodos SQLmetodos = new SQLmetodos();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,6 +110,11 @@ public class Frm_new_user extends javax.swing.JFrame {
         btnRegistrar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 570, -1, -1));
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
@@ -120,6 +125,11 @@ public class Frm_new_user extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 570, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,6 +145,28 @@ public class Frm_new_user extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+       SQLmetodos.guardar(txtLogin.getText(), 
+                          txtpasswordNew.getText(),
+                          txtNombre.getText(), 
+                          txtApellido.getText(), 
+                          txtCorreo.getText(), 
+                          txtCelular.getText(), 
+                          txtDireccion.getText());
+        //con esta linea ya podemos guardar
+     
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        Frm_login login = new Frm_login();
+        login.setVisible(true);
+        
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

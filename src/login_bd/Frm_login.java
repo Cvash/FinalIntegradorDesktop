@@ -5,7 +5,7 @@
  */
 package login_bd;
 
-
+import SQL.SQLmetodos;
 
 /**
  *
@@ -19,6 +19,10 @@ public class Frm_login extends javax.swing.JFrame {
     public Frm_login() {
         initComponents();
     }
+    // instanciamos el metodo
+    SQLmetodos SQLmetodos = new SQLmetodos();
+    
+    Frm_reserva_citas reservaCita = new Frm_reserva_citas();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,6 +99,11 @@ public class Frm_login extends javax.swing.JFrame {
         btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         btnIngresar.setText("Ingresar");
         btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
         background.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 130, 50));
 
         btnNuevoUsuario.setBackground(new java.awt.Color(51, 101, 166));
@@ -102,6 +111,11 @@ public class Frm_login extends javax.swing.JFrame {
         btnNuevoUsuario.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevoUsuario.setText("Crear Nuevo Usuario");
         btnNuevoUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoUsuarioActionPerformed(evt);
+            }
+        });
         background.add(btnNuevoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 540, 230, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -117,6 +131,27 @@ public class Frm_login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        // lleva los datos al metodo SQL
+        SQLmetodos.buscarUsuarioRegistrado(txtUser.getText(), txtPassword.getText());
+        
+        if ( reservaCita.isEnabled() ) {
+            this.dispose();
+        }
+
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoUsuarioActionPerformed
+        // TODO add your handling code here:
+        Frm_new_user newUser = new Frm_new_user();
+        newUser.setVisible(true);
+        
+        //ocultamos la ventana de login
+        this.setVisible(false);
+        
+        
+    }//GEN-LAST:event_btnNuevoUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
