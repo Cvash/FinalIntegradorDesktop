@@ -17,11 +17,11 @@ public class Frm_reserva_exitosa extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btnReservaSala = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        lblSalaMsj = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        lblFechaMsj = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lblHoraMsj = new javax.swing.JLabel();
         lblUsuarioMsj = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -68,25 +68,25 @@ public class Frm_reserva_exitosa extends javax.swing.JFrame {
         });
         jPanel1.add(btnReservaSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 740, 140, -1));
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel8.setText("Sala Emancipación");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, -1, -1));
+        lblSalaMsj.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblSalaMsj.setText("lblSalaMsj");
+        jPanel1.add(lblSalaMsj, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel9.setText("Fecha: ");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 520, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel11.setText("08/06/2021");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 520, -1, -1));
+        lblFechaMsj.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblFechaMsj.setText("lblFechaMsj");
+        jPanel1.add(lblFechaMsj, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 520, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel12.setText("Hora:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 560, -1, -1));
 
-        jLabel14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel14.setText("15:00 - 16:00");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 560, -1, -1));
+        lblHoraMsj.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblHoraMsj.setText("lblHoraMsj");
+        jPanel1.add(lblHoraMsj, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 560, -1, -1));
 
         lblUsuarioMsj.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblUsuarioMsj.setText("lblUsuarioMsj");
@@ -97,9 +97,17 @@ public class Frm_reserva_exitosa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Categoría", "Autor", "Title 3"
+                "Categoría", "Autor", "Libro"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 610, 750, 100));
@@ -250,21 +258,21 @@ public class Frm_reserva_exitosa extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     public javax.swing.JLabel lblFecha;
+    public javax.swing.JLabel lblFechaMsj;
+    public javax.swing.JLabel lblHoraMsj;
     private javax.swing.JLabel lblMenu;
+    public javax.swing.JLabel lblSalaMsj;
     public javax.swing.JLabel lblUsuario;
     public javax.swing.JLabel lblUsuarioMsj;
     public javax.swing.JLabel lblUsuarioNombre;

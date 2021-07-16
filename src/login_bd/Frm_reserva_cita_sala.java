@@ -90,7 +90,15 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
             new String [] {
                 "Sala", "Hora", "Aforo", "Disponible"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblDisponibilidadSala);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 480, 790, 100));
