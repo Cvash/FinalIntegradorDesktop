@@ -11,7 +11,7 @@ import login_bd.Frm_reserva_cita_sala;
 import login_bd.Frm_reserva_citas;
 
 public class SQLmetodos {
-   
+   //comentario para probar
     static Connection conexion;
     static PreparedStatement sentencia_preparada;
     static ResultSet resultado;
