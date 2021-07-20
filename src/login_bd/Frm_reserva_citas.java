@@ -331,7 +331,9 @@ public class Frm_reserva_citas extends javax.swing.JFrame {
         
         Frm_reserva_sala reserva_sala = new Frm_reserva_sala();
         reserva_sala.setVisible(true);
-        
+        reserva_sala.lblUsuario.setText(lblUsuario.getText());
+        reserva_sala.lblUsuarioNombre.setText(lblUsuarioNombre.getText());
+        reserva_sala.lblUsuarioMsj.setText(lblUsuarioNombre.getText() + ", tu reserva de libros se realizó exitósamente.");
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 

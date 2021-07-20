@@ -215,4 +215,62 @@ public class SQLmetodos {
          return modelo;
     }
     
+    public DefaultTableModel buscarLibrosReservados(String idReserva)
+    {
+       
+        String []  nombresColumnas = {"Categoría","Autor","Libro"};//Indica el nombre de las columnas en la tabla
+        String [] registros = new String[3];
+        
+        DefaultTableModel modelo = new DefaultTableModel(null, nombresColumnas);
+        String sql="SELECT a.idReserva,d.descripcionCategoria as categoria,e.nombreAutor as autor,c.tituloLibro as libro\n" +
+                    "FROM biblioteca_integrador.reserva a inner join biblioteca_integrador.reserva_detalle b on a.idReserva = b.id_Reserva\n" +
+                    "inner join biblioteca_integrador.libro c on b.id_Libro = c.idLibro\n" +
+                    "inner join biblioteca_integrador.categoria d on c.id_Categoria = d.idCategoria\n" +
+                    "inner join biblioteca_integrador.autor e on c.id_Autor = e.idAUtor\n" +
+                    "where b.id_Reserva =" + idReserva + " \n" +
+                    "and a.estadoReserva = 1 and b.estadoReservaDetalle = 1\n" +
+                    "order by categoria,autor,libro;";
+        
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;                           
+        
+        try
+        {
+            cn = ConexionBD.conectar();
+            pst = cn.prepareStatement(sql);   
+            rs = pst.executeQuery();
+            
+            while(rs.next())
+            {
+                registros[0] = rs.getString("categoria");
+                registros[1] = rs.getString("autor"); 
+                registros[2] = rs.getString("libro");
+                
+                modelo.addRow(registros);
+                
+            }                      
+        }
+        catch(SQLException e)
+        {
+            
+            JOptionPane.showMessageDialog(null,"Error al conectar. "+e.getMessage());
+            
+        }
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (pst != null) pst.close();
+                if (cn != null) cn.close();
+            }
+            catch(SQLException e)
+            {
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+         return modelo;
+    }
+    
 }

@@ -17,13 +17,18 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
 public class Frm_reserva_cita_sala extends javax.swing.JFrame {
-
+    
+    String salaReservada = "";
+    String horaReservada = "";
+    
     public Frm_reserva_cita_sala() {
         
         initComponents();
         
         Calendar fechaActual = new GregorianCalendar();
         dateFecReserva.setCalendar(fechaActual);
+        
+        lblIdReservaLibros.setVisible(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -46,10 +51,11 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
         btnReservaLibros = new javax.swing.JButton();
         lblMenu = new javax.swing.JLabel();
         btnBuscarDisponibilidad = new javax.swing.JButton();
-        contenedorReservaCitas = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         lblUsuarioNombre = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
+        contenedorReservaCitas = new javax.swing.JLabel();
+        lblIdReservaLibros = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reserva de citas pata lectura de libros en sala");
@@ -97,6 +103,11 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblDisponibilidadSala.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDisponibilidadSalaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblDisponibilidadSala);
@@ -161,10 +172,6 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
         });
         jPanel1.add(btnBuscarDisponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, -1, -1));
 
-        contenedorReservaCitas.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        contenedorReservaCitas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reserva de Citas de Salas de Lectura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24), new java.awt.Color(0, 102, 102))); // NOI18N
-        jPanel1.add(contenedorReservaCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 1120, 670));
-
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/usuario.png"))); // NOI18N
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 20, -1, 60));
@@ -178,6 +185,13 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
         lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblUsuario.setText("lblUsuario");
         jPanel1.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 30, 210, -1));
+
+        contenedorReservaCitas.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        contenedorReservaCitas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reserva de Citas de Salas de Lectura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24), new java.awt.Color(0, 102, 102))); // NOI18N
+        jPanel1.add(contenedorReservaCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 1120, 670));
+
+        lblIdReservaLibros.setText("lblIdReservaLibros");
+        jPanel1.add(lblIdReservaLibros, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 90, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,14 +214,20 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
         //Datos a pasar a la Reserva de sala exitósa
         reserva_sala.lblUsuario.setText(lblUsuario.getText());
         reserva_sala.lblUsuarioNombre.setText(lblUsuarioNombre.getText());
-        //Fecha
         Date  fechaFormulario = dateFecReserva.getDate();
         DateFormat f = new SimpleDateFormat("dd/MM/yyyy");
         String fecha = f.format(fechaFormulario);
         reserva_sala.lblFecha.setText(fecha);
-        String msjReservaExitosa = lblUsuarioNombre.getText() + ", tu reserva de sala de lectura se realizó exitósamente.";
+        String msjReservaExitosa = lblUsuarioNombre.getText() + ", tu reserva de Sala de Lectura se realizó exitósamente.";
         reserva_sala.lblUsuarioMsj.setText(msjReservaExitosa);
-        
+        reserva_sala.lblSalaMsj.setText(salaReservada);
+        reserva_sala.lblFechaMsj.setText(fecha);
+        reserva_sala.lblHoraMsj.setText(horaReservada);
+ 
+        SQLmetodos logica = new SQLmetodos();
+        DefaultTableModel modelo = logica.buscarLibrosReservados(lblIdReservaLibros.getText());
+        reserva_sala.tblLibrosReservados.setModel(modelo);
+
         this.setVisible(false);
     }//GEN-LAST:event_btnReservaSalaActionPerformed
 
@@ -246,6 +266,13 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
         tblDisponibilidadSala.setModel(modelo);
 
     }//GEN-LAST:event_btnBuscarDisponibilidadActionPerformed
+
+    private void tblDisponibilidadSalaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDisponibilidadSalaMouseClicked
+        int seleccionar = tblDisponibilidadSala.rowAtPoint(evt.getPoint());
+        salaReservada = String.valueOf(tblDisponibilidadSala.getValueAt(seleccionar, 0));
+        horaReservada = String.valueOf(tblDisponibilidadSala.getValueAt(seleccionar, 1));
+        
+    }//GEN-LAST:event_tblDisponibilidadSalaMouseClicked
    
     
     /**
@@ -306,6 +333,7 @@ public class Frm_reserva_cita_sala extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JLabel lblIdReservaLibros;
     private javax.swing.JLabel lblMenu;
     public javax.swing.JLabel lblUsuario;
     public javax.swing.JLabel lblUsuarioNombre;
